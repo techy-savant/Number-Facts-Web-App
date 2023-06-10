@@ -1,28 +1,30 @@
 let boxes = document.querySelector('.boxes');
 let numberInput = document.getElementById('numberInput');
+let form = document.querySelector('.form');
+let btn = document.querySelector(".btn");
 
 let output = document.createElement('p'); //create output element
 output.classList.add('box');
 
-numberInput.addEventListener('input', fetchFactAjax);
+btn.addEventListener('click', fetchFactAjax) || form.addEventListener('submit', fetchFactAjax);
 
 function fetchFactAjax(e){
-    let number = e.target;
-    if (isNaN(number.value) || number.value < 0) { //automatically make value 1 if its a negative number
-      number.value = 1;
+    e.preventDefault();
+    let number = numberInput.value;
+    if (isNaN(number) || number < 0) { //automatically make value 1 if it's a negative number
+      number = 1;
     }
-    number = number.value;
    
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `http://numbersapi.com/${number}`);
+    let xhr = new XMLHttpRequest(); //create xhr request
+    xhr.open('GET', `http://numbersapi.com/${number}`); //specify fetch method and source site
 
+    //most of the main stuff is done here
     xhr.onload = function(){
-        if(this.status == 200 && number != ''){
-           
+        if(this.status == 200 && number != ''){ //if server is running legitimately and entry is not blank, then perform action
             output.textContent = this.responseText;
-            boxes.append(output);
-
+            boxes.appendChild(output);
         }
-    }
+    };
     xhr.send();
 }
+

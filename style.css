@@ -56,6 +56,21 @@
     outline: none;
     border: none;
 }
+form .btn{
+    padding: 10px 12px;
+    width: fit-content;
+    justify-self: center;
+    border: none;
+    outline: none;
+    background-color: #1b4332;
+    color: #fff;
+    border-bottom-right-radius: 6px;
+    cursor: pointer;
+    transition: .5s all ease;
+}
+.form .btn:focus{
+    background-color: #2b9348;
+}
 
 .boxes{
     display: grid;
