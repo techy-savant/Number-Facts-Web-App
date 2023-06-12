@@ -35,7 +35,7 @@ function getFactFetch(e){
         number = 1;
     }
 
-    fetch(`http://numbersapi.com/${number}`)
+    fetch('http://numbersapi.com/'+number)
     .then(res => res.text())
     .then(data => {
         if(number != ''){ //if entry is not blank, then perform action
